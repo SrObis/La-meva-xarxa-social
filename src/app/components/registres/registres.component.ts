@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -7,34 +7,27 @@ import Swal from 'sweetalert2';
   templateUrl: './registres.component.html',
   styleUrls: ['./registres.component.css']
 })
-export class RegistresComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
-  usuario: FormGroup;
-  submitted = false;
-  ngOnInit():void{
-    this.usuario = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      correo: ['', [Validators.required , Validators.email]]
+export class RegistresComponent {
+
+    registre = new FormGroup({
+      nom: new FormControl('', Validators.required),
+      cognom: new FormControl('', Validators.required),
+      edat: new FormControl('', Validators.required),
+      foto: new FormControl('', Validators.required),
+      desc: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      cont: new FormControl('', Validators.required),
     });
- }
- get f(){
-  return this.usuario.controls;
-}
-enviarDatos():void{
-  this.submitted = true;
-  if(this.usuario.invalid){
-    return;
-  }
-    Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    })
-  
-}
+
+    sweetAlert() {
+      Swal.fire({
+        icon: 'success',
+        text: 'Usuari registrat!',
+      })
+    }
+
+    push() {
+      //push array
+    }
 }

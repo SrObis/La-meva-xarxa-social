@@ -1,35 +1,103 @@
-<div class="container">
-    <form [formGroup]="usuario">
-      <!--Etiqueta nombre-->
-      <div class="form-group">
-        <label form="">Nombre</label>
-        <input type="text" placeholder="Nombre"
-        formControlName = "nombre" class="form-control"
-        [ngClass]= "{'is-invalid': submitted && f.nombre.errors}"
-        >
-
-        <div *ngIf = "submitted && f.nombre.errors" class="invalid-feedback">
-          <div *ngIf= "f.nombre.errors.required">El nombre es necesario </div>
-        </div>
-      </div>
-
-       <!--Etiqueta correo-->
-      <div class="form-group">
-        <label form="">Correo</label>
-        <input type="email" placeholder="correo"
-        formControlName = "correo" class="form-control"
-        [ngClass]= "{'is-invalid': submitted && f.correo.errors}"
-        >
-
-        <div *ngIf = "submitted && f.correo.errors" class="invalid-feedback">
-          <div *ngIf= "f.correo.errors.required">El correo es necesario </div>
-          <div *ngIf= "f.correo.errors.email">El correo no es valido </div>
-
-        </div>
-      </div>
-      <!--Boton-->
-      <div class="form-group">
-        <button class="btn btn-primary" (click)="enviarDatos()">Enviar</button>
-      </div>
-    </form>
+<!-- Formulario de registro -->
+<form class="container-fluid" style="max-width: 65%;" [formGroup]="registre">
+  <h1>Formulari de registre</h1>
+  <!-- Nombre -->
+  <div class="form-group">
+    <label>Nom:</label>
+    <input [class.is-invalid]="registre.get('nom').touched && registre.get('nom').invalid" formControlName="nom" type="text" class="form-control" placeholder="Nom">
+    <div *ngIf="registre.get('nom').invalid && registre.get('nom').errors && (registre.get('nom').dirty || registre.get('nom').touched)">
+      <small class="text-danger" *ngIf="registre.get('nom').hasError('required')">
+          Introdueix un nom
+      </small>
+      <small class="text-danger" *ngIf="registre.get('nom').hasError('minlength')">
+          The minimum length for this field is {{registre.get('nom').errors.minlength.requiredLength}} characters.
+      </small>
+      <small class="text-danger" *ngIf="registre.get('nom').hasError('maxlength')">
+          The maximum length for this field is {{registre.get('nom').errors.maxlength.requiredLength}} characters.
+      </small>
+    </div>
   </div>
+  <!-- Apellidos -->
+  <div class="form-group">
+    <label>Cognoms:</label>
+    <input [class.is-invalid]="registre.get('cognom').touched && registre.get('cognom').invalid" formControlName="cognom" type="text" class="form-control" placeholder="Cognoms">
+  </div>
+  <div *ngIf="registre.get('cognom').invalid && registre.get('cognom').errors && (registre.get('cognom').dirty || registre.get('cognom').touched)">
+    <small class="text-danger" *ngIf="registre.get('cognom').hasError('required')">
+        Introdueix un cognom
+    </small>
+  </div>
+  <!-- Edad -->
+  <div class="form-group">
+    <label>Edat:</label>
+    <input [class.is-invalid]="registre.get('edat').touched && registre.get('edat').invalid" formControlName="edat" type="number" class="form-control" placeholder="Edad">
+  </div>
+  <div *ngIf="registre.get('edat').invalid && registre.get('edat').errors && (registre.get('edat').dirty || registre.get('edat').touched)">
+    <small class="text-danger" *ngIf="registre.get('edat').hasError('required')">
+        Introdueix una edat
+    </small>
+  </div>
+  <!-- Foto -->
+  <div class="form-group">
+    <label>Foto:</label>
+    <input [class.is-invalid]="registre.get('foto').touched && registre.get('foto').invalid" formControlName="foto" type="text" class="form-control" placeholder="Seleciona una foto">
+  </div>
+  <div *ngIf="registre.get('foto').invalid && registre.get('foto').errors && (registre.get('foto').dirty || registre.get('foto').touched)">
+    <small class="text-danger" *ngIf="registre.get('foto').hasError('required')">
+        Introdueix una foto
+    </small>
+  </div>
+  <!-- Descripcion -->
+  <div class="form-group">
+    <label>Descripció:</label>
+    <input [class.is-invalid]="registre.get('desc').touched && registre.get('desc').invalid" formControlName="desc" type="text" class="form-control" placeholder="Descripcion">
+  </div>
+  <div *ngIf="registre.get('desc').invalid && registre.get('desc').errors && (registre.get('desc').dirty || registre.get('desc').touched)">
+    <small class="text-danger" *ngIf="registre.get('desc').hasError('required')">
+        Introdueix una descripció
+    </small>
+    <small class="text-danger" *ngIf="registre.get('desc').hasError('minlength')">
+        El minim son {{registre.get('desc').errors.minlength.requiredLength}} caracters.
+    </small>
+  </div>
+  <!-- Correo -->
+  <div class="form-group">
+    <label>Email:</label>
+    <input [class.is-invalid]="registre.get('email').touched && registre.get('email').invalid" formControlName="email" type="email" class="form-control" placeholder="Correo@Correo.com">
+  </div>
+  <div *ngIf="registre.get('email').invalid && registre.get('email').errors && (registre.get('email').dirty || registre.get('email').touched)">
+    <small class="text-danger" *ngIf="registre.get('email').hasError('required')">
+        Introdueix un correu
+    </small>
+    <small class="text-danger" *ngIf="registre.get('email').hasError('email')">
+      Introdueix un correu valid amb @ i la continuació
+    </small>
+  </div>
+  <!-- Contraseña -->
+  <div class="form-group">
+    <label>Contrasenya:</label>
+    <input [class.is-invalid]="registre.get('cont').touched && registre.get('cont').invalid" formControlName="cont" type="password" class="form-control" placeholder="Contrasenya">
+  </div>
+  <div *ngIf="registre.get('cont').invalid && registre.get('cont').errors && (registre.get('cont').dirty || registre.get('cont').touched)">
+    <small class="text-danger" *ngIf="registre.get('cont').hasError('required')">
+        Introdueix una contrasenya
+    </small>
+  </div>
+  <!-- Confirmar contraseña -->
+  <div class="form-group">
+    <label>Confirmar contrasenya:</label>
+    <input [class.is-invalid]="registre.get('confCont').touched && registre.get('confCont').invalid" formControlName="confCont" type="password" class="form-control" placeholder="Confirmar contrasenya">
+  </div>
+  <div *ngIf="registre.get('confCont').invalid && registre.get('confCont').errors && (registre.get('confCont').dirty || registre.get('confCont').touched)">
+    <small class="text-danger" *ngIf="registre.get('confCont').hasError('required')">
+        Repeteix la contrasenya
+    </small>
+    <br>
+    <small class="text-danger" *ngIf="registre.get('confCont').hasError('compare')">
+      Les contrasenyes no coincideixen
+    </small>
+  </div>
+  <!-- Enviar -->
+  <br>
+  <input [disabled]="!registre.valid" type="button" (click)="[sweetAlert(), push()]" class="btn btn-primary" value="Registrar"/>
+</form>

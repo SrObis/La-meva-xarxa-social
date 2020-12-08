@@ -1,1 +1,39 @@
-<p>administrador works!</p>
+<div class="table table-striped w-auto">
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">
+        <a>Nom Usuari</a>
+      </th>
+      <th scope="col">
+        <a >Cognom Usuari</a>
+      </th>
+      <th scope="col">
+        <a>Correu</a>
+      </th>
+      <th scope="col">
+        <a >Acción</a>
+      </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let row of listaUsers;let i = index">
+      <td class="">{{row.nom_user}}</td>
+      <td class="">{{row.apellido_user}}</td>
+      <td class="">{{row.correu}}</td>
+      <td>
+        <span>
+          <button type="button" class="btn btn-danger" (click)="borrar(row.id_user)">Borrar</button>
+        </span>
+      </td>
+    </tr>
+    </tbody>
+
+  </table>
+
+  <div class="alert alert-danger" *ngIf="listaUsers.length == 0">
+    No hay nada creado!
+  </div>
+
+</div>
