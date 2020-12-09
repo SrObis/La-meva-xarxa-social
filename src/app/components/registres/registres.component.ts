@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ɵSWITCH_COMPILE_INJECTABLE__POST_R3__ } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+// npm install sweetalert2
 import Swal from 'sweetalert2';
 
 @Component({
@@ -7,27 +8,49 @@ import Swal from 'sweetalert2';
   templateUrl: './registres.component.html',
   styleUrls: ['./registres.component.css']
 })
+export class RegistresComponent implements OnInit {
 
-export class RegistresComponent {
+  constructor(private formBuilder: FormBuilder) {}
 
-    registre = new FormGroup({
-      nom: new FormControl('', Validators.required),
-      cognom: new FormControl('', Validators.required),
-      edat: new FormControl('', Validators.required),
-      foto: new FormControl('', Validators.required),
-      desc: new FormControl('', [Validators.required, Validators.minLength(4)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      cont: new FormControl('', Validators.required),
+  usuario: FormGroup;
+  submitted = false; 
+  
+
+  ngOnInit(): void {
+
+    // Valores que se pasan para validar
+    // El required es para ver si no esta vacio
+    // El minLenght() es para que tenga un minimo de caracteres
+    // El email para comprobar que es tipo email
+    this.usuario = this.formBuilder.group({
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      edad: ['', Validators.required],
+      foto: ['', Validators.required],
+      descripcion: ['', [Validators.required, Validators.minLength(4)]],
+      correo: ['', [Validators.required, Validators.email]],
+      contrasenya: ['', Validators.required],
+      contrasenya2: ['', Validators.required],      
     });
+  }
 
-    sweetAlert() {
-      Swal.fire({
-        icon: 'success',
-        text: 'Usuari registrat!',
-      })
+  get f(){
+    return this.usuario.controls;
+  }
+
+  enviarDatos(){
+    this.submitted = true;
+
+    if(this.usuario.invalid){
+      return;
     }
 
-    push() {
-      //push array
-    }
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Usuari registrat correctament',
+      showConfirmButton: false,
+      timer: 2000
+    })
+  }
 }
