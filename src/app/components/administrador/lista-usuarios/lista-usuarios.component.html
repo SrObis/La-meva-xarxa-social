@@ -1,0 +1,16 @@
+<h1 class="titol text-center mt-3">- Llista Usuaris -</h1>
+
+<!-- Informacio dels usuaris -->
+<div class="row my-3 mx-3">
+    <div *ngFor="let usuari  of usuaris; let i = index" class="col">
+        <div class="card card-style mb-4">
+            <img src={{usuari.foto}} class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{usuari.nom}} {{usuari.cognoms}}, {{usuari.edat}}</h5>
+                <p class="card-text">{{usuari.descripcio}}</p>
+                <a class="btn btn-outline-danger" (click)="eliminar(i)">Eliminar</a>
+            </div>
+        </div>
+    </div>
+</div>
+<br>

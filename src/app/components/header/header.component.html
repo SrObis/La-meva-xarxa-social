@@ -1,0 +1,23 @@
+<div class="container">
+  <nav class="navbar navbar-expand-sm fixed-top navbar-dark bg-dark">
+    <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse text-center" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" [routerLink]="['/perfils']" routerLinkActive="active">Perfil Usuario</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" [routerLink]="['/registres']" routerLinkActive="active">Registrar Usuario<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" [routerLink]="['/administrador']" routerLinkActive="active">Administrador</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

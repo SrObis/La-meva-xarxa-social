@@ -1,35 +1,99 @@
 <div class="container">
-    <form [formGroup]="usuario">
-      <!--Etiqueta nombre-->
-      <div class="form-group">
-        <label form="">Nombre</label>
-        <input type="text" placeholder="Nombre"
-        formControlName = "nombre" class="form-control"
-        [ngClass]= "{'is-invalid': submitted && f.nombre.errors}"
-        >
+  <form [formGroup] = "usuario">
+    <!-- Etiqueta nombre -->
+    <div class="form-group">
+      <label for="">Nombre</label>
+      <input type="text" placeholder="Nombre"
+      formControlName = "nombre" class="form-control"
+      [ngClass] = "{'is-invalid': submitted && f.nombre.errors}"
+      >
 
-        <div *ngIf = "submitted && f.nombre.errors" class="invalid-feedback">
-          <div *ngIf= "f.nombre.errors.required">El nombre es necesario </div>
-        </div>
+      <!-- Muestra un mensaje de error si el nombre esta vacio -->
+      <div *ngIf = "submitted && f.nombre.errors" class="invalid-feedback">
+          <div *ngIf = "f.nombre.errors.required">El nombre es obligatorio</div>
       </div>
 
-       <!--Etiqueta correo-->
-      <div class="form-group">
-        <label form="">Correo</label>
-        <input type="email" placeholder="correo"
-        formControlName = "correo" class="form-control"
-        [ngClass]= "{'is-invalid': submitted && f.correo.errors}"
-        >
+      <label for="">Apellido</label>
+      <input type="text" placeholder="Apellido"
+      formControlName = "apellido" class="form-control"
+      [ngClass] = "{'is-invalid': submitted && f.apellido.errors}"
+      >
 
-        <div *ngIf = "submitted && f.correo.errors" class="invalid-feedback">
-          <div *ngIf= "f.correo.errors.required">El correo es necesario </div>
-          <div *ngIf= "f.correo.errors.email">El correo no es valido </div>
+      <div *ngIf = "submitted && f.apellido.errors" class="invalid-feedback">
+          <div *ngIf = "f.apellido.errors.required">El apellido es obligatorio</div>
+      </div>
 
-        </div>
+      <label for="">Edad</label>
+      <input type="date"
+      formControlName = "edad" class="form-control"
+      [ngClass] = "{'is-invalid': submitted && f.edad.errors}"
+      >
+
+      <div *ngIf = "submitted && f.edad.errors" class="invalid-feedback">
+          <div *ngIf = "f.edad.errors.required">La edad es obligatoria</div>
       </div>
-      <!--Boton-->
-      <div class="form-group">
-        <button class="btn btn-primary" (click)="enviarDatos()">Enviar</button>
+
+      <label for="">Foto</label>
+      <input type="text" placeholder="URL de la foto"
+      formControlName = "foto" class="form-control"
+      [ngClass] = "{'is-invalid': submitted && f.foto.errors}"
+      >
+
+      <div *ngIf = "submitted && f.foto.errors" class="invalid-feedback">
+          <div *ngIf = "f.foto.errors.required">La foto es obligatoria</div>
       </div>
-    </form>
-  </div>
+
+      <label for="">Descripcion</label>
+      <input type="text" placeholder="Descripcion"
+      formControlName = "descripcion" class="form-control"
+      [ngClass] = "{'is-invalid': submitted && f.descripcion.errors}"
+      >
+
+      <div *ngIf = "submitted && f.descripcion.errors" class="invalid-feedback">
+          <!-- Muestra un mensaje de error si la descripcion esta vacia -->
+          <div *ngIf = "f.descripcion.errors.required">La descripcio es obligatoria</div>
+          <!-- Muestra un mensaje de error si la descripcion no tiene un minimo de 4 caracteres -->
+          <div *ngIf = "f.descripcion.errors.minLength">La descripcio te que tenir minim 4 caracters</div>
+      </div>
+
+      <label for="">Correo</label>
+      <input type="email" placeholder="Correo"
+      formControlName = "correo" class="form-control"
+      [ngClass] = "{'is-invalid': submitted && f.correo.errors}"
+      >
+
+      <div *ngIf = "submitted && f.correo.errors" class="invalid-feedback">
+          <div *ngIf = "f.correo.errors.required">El correo es obligatorio</div>
+          <div *ngIf = "f.correo.errors.email">El correo no es valido</div>
+      </div>
+
+      <label for="">Contrasenya</label>
+      <input type="password" placeholder="Contrasenya"
+      formControlName = "contrasenya" class="form-control"
+      [ngClass] = "{'is-invalid': submitted && f.contrasenya.errors}"
+      >
+
+      <div *ngIf = "submitted && f.contrasenya.errors" class="invalid-feedback">
+          <div *ngIf = "f.contrasenya.errors.required">La contrasenya es obligatoria</div>
+      </div>
+
+      <label for="">Repeteix la contrasenya</label>
+      <input type="password" placeholder="Contrasenya"
+      formControlName = "contrasenya2" class="form-control"
+      [ngClass] = "{'is-invalid': submitted && f.contrasenya2.errors}"
+      >
+
+      <div *ngIf = "submitted && f.contrasenya2.errors" class="invalid-feedback">
+          <div *ngIf = "f.contrasenya2.errors.required">La contrasenya es obligatoria</div>
+      </div>
+
+    </div>
+
+    
+
+    <!-- Boton para enviar los datos -->
+    <div class="form-group">
+      <button class="btn btn-primary" (click)="enviarDatos()">Enviar</button>
+    </div>
+  </form>
+</div>
